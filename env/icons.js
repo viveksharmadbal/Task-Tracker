@@ -1,4 +1,3 @@
-module.exports = {
-    LOGO: "/img/logo.jpg",
-
+export const icons={
+    LOGO: "/img/download.jpg",
 }

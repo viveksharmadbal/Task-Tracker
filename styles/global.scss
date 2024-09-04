@@ -1,4 +1,4 @@
-$primary: #044c8c;
+$primary: #000000;
 $secondary: #f58224;
 
 $primary-light: #2581c9;
@@ -69,6 +69,14 @@ a {
 html,
 body {
   background-color: #ffffff;
+  overflow: hidden;
+  background-image: url("/img/bg2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  z-index: -1;
 }
 
 td,

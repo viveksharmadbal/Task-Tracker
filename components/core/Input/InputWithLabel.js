@@ -1,59 +1,37 @@
-"use client"
-
-
 import React from 'react'
-const defaultClassNameArray = ["row mt-3", "col-12", "col-12"]
+import toTitleCase from '@/hooks/helper/toTitleCase'
+
+const defaultClassNameArray = ["row mt-3", "col-md-3 col-12", "col-md-8 col-12"]
+
 
 const InputWithLabel = (props) => {
-    const {
-        feilds = {},
-        state = {},
-        onChangeHandler = () => { },
-        className = defaultClassNameArray,
-        additinalValidation = (value) => value,
-    } = props
-
-    const {
-
-        type = "text",
-        label = "",
-        placeholder = "",
-        name = "",
-
-        isDisabled = false,
-        isReadOnly = false,
-        isRequired = false,
-        isHidden = false,
-        maxLength = null,
-
-    } = feilds
-
+    const { classNameArray = defaultClassNameArray, state = {}, label = "", type = "text", name = "", isDisabled = false, isReadOnly = false, isRequired = false, maxLength = null, onChangeHandler = () => { }, smallCaseOutput = false } = props
     return (
-        <div className={className[0]}>
+        <div className={classNameArray[0]}>
             {label &&
-                <div className={className[1]}>
-                    <label>{label}{isRequired && <span />}</label>
+                <div className={classNameArray[1]}>
+                    <label>{label} {isRequired && <span />}</label>
                 </div>
             }
-            <div className={className[2]}>
+            <div className={classNameArray[2]}>
                 <input
                     type={type}
-                    placeholder={placeholder}
-                    name={name}
-
                     className='form-control'
-
-                    value={state?.[name]}
+                    name={name}
+                    value={state[name]}
                     onChange={(e) => {
-                        e.target.value = additinalValidation(e.target.value)
+                        if (type != "file") {
+                            if (smallCaseOutput || type === "email") {
+                                e.target.value = e?.target?.value?.toLowerCase() || e.target.value
+                            } else {
+                                e.target.value = toTitleCase(e.target.value)
+                            }
+                        }
                         onChangeHandler(e)
                     }}
-
                     readOnly={isReadOnly}
                     disabled={isDisabled}
-                    hidden={isHidden}
                     maxLength={maxLength}
-                    required={isRequired}
                 />
             </div>
         </div>

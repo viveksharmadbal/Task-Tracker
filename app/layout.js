@@ -3,12 +3,14 @@ import Header from '@/components/core/Header';
 import Loader from '@/components/core/Loader';
 import { Providers } from '@/redux/provider';
 import '@/styles/global.scss'
-
+import { Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
-  title: "Cheque Handover Services : Shubham Finance",
-  description: "Shubham is a leader in providing housing finance solutions to those with informal incomes. We are amongst the first organizations in India to evolve from document-based underwriting to customized credit programs for each customer and have become a leading home loan provider to borrowers without formal income.",
+  title: "Task-Tracker",
 };
+
+const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   return (
@@ -17,12 +19,12 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-        <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon/download.ico" sizes="any" />
       </head>
-      <body suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true} className={inter.className}>
         <Providers>
-          <Loader />
-          <Header />
+          <Loader/>
+          <Toaster position="top-center" />
           <main className="container-fluid">{children}</main>
           <Footer />
         </Providers>

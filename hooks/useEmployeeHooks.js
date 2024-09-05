@@ -6,6 +6,10 @@ import {fetchEmployees, updateEmployeeAsync, deleteEmployeeAsync} from "@/redux/
 
 export const useEmployeeHooks = () => {
   const [editingEmployee, setEditingEmployee] = useState(null);
+  const [viewEmployee,setviewEmployee] = useState(null)
+  // const [showDeleteModal, setShowDeleteModal] = useState(false);
+  // const [employeeToDelete, setEmployeeToDelete] = useState(null);
+
   const dispatch = useDispatch();
   const [updatedData, setUpdatedData] = useState({
     employee_name: "",
@@ -23,6 +27,7 @@ export const useEmployeeHooks = () => {
   useEffect(() => {
     dispatch(fetchEmployees());
   }, [dispatch]);
+
   const handleEdit = (employee) => {
     setEditingEmployee(employee.id);
     setUpdatedData({
@@ -58,6 +63,7 @@ export const useEmployeeHooks = () => {
       [name]: value,
     }));
   };
+
   return{
     editingEmployee,
     setEditingEmployee,
@@ -68,6 +74,8 @@ export const useEmployeeHooks = () => {
     handleInputChange,
     handleUpdate,
     handleDelete,
-    handleEdit
+    handleEdit,
+    viewEmployee,
+    setviewEmployee
   }
 }

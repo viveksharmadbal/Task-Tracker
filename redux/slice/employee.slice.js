@@ -10,7 +10,7 @@ export const fetchEmployees = createAsyncThunk(
 );
 
 export const deleteEmployeeAsync = createAsyncThunk(
-  'employee/deleteEmployee',
+  'employee/deleteEmployee', //sliceName/actionName
   async (id) => {
     await axios.delete(`http://localhost:3000/employee/${id}`);
     return id;
